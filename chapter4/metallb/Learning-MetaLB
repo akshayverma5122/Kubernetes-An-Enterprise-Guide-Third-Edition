@@ -23,16 +23,7 @@ Advertising all the IP addresspool and Creating a LoadBalancer service:-
 1. Get the Network range which is being used by the docker and create the IPAddressPool custom resource.
 
 docker network inspect kind | grep -i subnet  
-vim metallb-pool.yaml
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: pool-01
-  namespace: metallb-system
-spec:
-  addresses:
-  - 172.18.10.10-172.18.10.20
-
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool.yaml
 kubectl create -f metallb-pool.yaml 
 kubectl get ipaddresspool
 
@@ -63,8 +54,17 @@ curl <LB IP>
 Advertising specific IP addresspool and Creating a LoadBalancer service:-
 -----------------------------------------------------------------------
 
-1. Create the two ip address pool with name pool-01 and pool-02. 
+1. Create the three ip address pool with name pool-01, pool-02 and pool-03.
 
 kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool-template1.yaml
 kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool-template2.yaml
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool-template3.yaml
+
+kubectl get ipaddresspool
+
+2. Create the L2Advertisement for pool-01 and pool-02 Ip Address Pool.
+
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/specific-pool-L2Advertisement.yaml
+
+kubectl get kubectl get l2advertisement
 
