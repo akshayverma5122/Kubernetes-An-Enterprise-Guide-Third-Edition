@@ -5,5 +5,5 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - <metallb_pool>
+  - 172.18.10.20-172.18.10.30
 
