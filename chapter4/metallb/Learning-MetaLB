@@ -17,7 +17,8 @@ MetalLB components:-
 1. Controller
 2. Speaker
 
-Creating a LoadBalancer service:-
+Advertising all the IP addresspool and Creating a LoadBalancer service:-
+-----------------------------------------------------------------------
 
 1. Get the Network range which is being used by the docker and create the IPAddressPool custom resource.
 
@@ -58,3 +59,12 @@ kubectl describe myapp01-lb  >>>> check the endpoint details of the service
 6. test the service using below curl command with external-ip of LB. 
 
 curl <LB IP>
+
+Advertising specific IP addresspool and Creating a LoadBalancer service:-
+-----------------------------------------------------------------------
+
+1. Create the two ip address pool with name pool-01 and pool-02. 
+
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool-template1.yaml
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/metallb-pool-template2.yaml
+
