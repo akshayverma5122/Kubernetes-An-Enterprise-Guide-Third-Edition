@@ -19,10 +19,10 @@ MetalLB components:-
 
 Creating a LoadBalancer service:-
 
-1. Create the IPAddressPool custom resource.
+1. Get the Network range which is being used by the docker and create the IPAddressPool custom resource.
 
-vi pool1.yaml
-
+docker network inspect kind | grep -i subnet  
+vim metallb-pool.yaml
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
@@ -32,20 +32,12 @@ spec:
   addresses:
   - 172.18.10.10-172.18.10.20
 
-kubectl create -f 
+kubectl create -f metallb-pool.yaml 
 kubectl get ipaddresspool
 
 2. create the L2Advertisement which will advertise the list of IP address. This will advertise all the ip address pool becase we have not mentioned the pool info in manifest file. 
 
-vi advertise1.yaml
-
-apiVersion: metallb.io/v1beta1
-kind: L2Advertisement
-metadata:
-  name: l2-all-pools
-  namespace: metallb-system
-
-kubectl create -f advertise1.yaml
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/l2advertisement.yaml
 kubectl get L2Advertisement
 
 3. Restart the controller to take the effect of newly created advertisement. 
@@ -54,14 +46,14 @@ kubectl  rollout restart  deploy controller
 
 4. create the nginx deployment 
 
-kubectl create deploy nginx --image=nginx --replicas=1
+kubectl create deploy myapp01 --image=nginx --replicas=1
 
 5. Generate the yaml file for load balancer service and create the lb service for nginx deployment. 
 
-kubectl create service loadbalancer nginx-lb --tcp=8080 --dry-run=client  -o yaml > lb.yaml
-kubectl create -f lb.yaml  >>>> change the selector value in lb.yaml and then execute this command
-kubectl get svc nginx-lb   >>>> check the external ip 
-kubectl describe nginx-lb  >>>> check the endpoint details of the service 
+kubectl create svc loadbalancer myapp01-lb --tcp=80:80 --dry-run=client -o yaml > myapp01-lb.yaml
+kubectl create -f myapp01-lb.yaml  >>>> change the selector value in myapp01-lb.yaml and then execute this command
+kubectl get svc myapp01-lb   >>>> check the external ip 
+kubectl describe myapp01-lb  >>>> check the endpoint details of the service 
 
 6. test the service using below curl command with external-ip of LB. 
 
