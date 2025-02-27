@@ -5,5 +5,5 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-    - pool1
-    - pool2
+    - pool-01
+    - pool-02
