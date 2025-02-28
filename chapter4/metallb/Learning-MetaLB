@@ -13,9 +13,16 @@ MetalLB:-
 --------
 
 MetalLB components:-
+-------------------
 
-1. Controller
-2. Speaker
+1. Deployment - Controller >> controller will assign the ip address of newly created lb services. 
+2. DaemonSets - Speaker  >> it will watch the newly created service object and send ths info with controller.
+
+MetaLb Custom Resource:-
+-----------------------
+
+1. IPAddressPool  >>> IP address range which need to advertise by using L2Advertisement custom resource. 
+2. L2Advertisement >>> it will advertise the IPAddressPool. 
 
 Advertising all the IP addresspool and Creating a LoadBalancer service:-
 -----------------------------------------------------------------------
@@ -65,6 +72,10 @@ kubectl get ipaddresspool
 2. Create the L2Advertisement for pool-01 and pool-02 Ip Address Pool.
 
 kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/specific-pool-L2Advertisement.yaml
+
+
+
+3. Execute the below command to verify the pool advertisement. 
 
 kubectl get kubectl get l2advertisement
 
