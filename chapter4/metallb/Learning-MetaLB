@@ -75,5 +75,5 @@ kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-A
 
 3. Execute the below command to verify the pool advertisement. 
 
-kubectl get kubectl get l2advertisement
+kubectl get l2advertisement
 
