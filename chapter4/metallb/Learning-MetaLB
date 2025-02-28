@@ -77,3 +77,16 @@ kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-A
 
 kubectl get l2advertisement
 
+Assigning a static IP address to a service:-
+-------------------------------------------
+
+1. create the lb service with static ip using kubernetes loadBalancerIP spec. 
+
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/lb-with-static-ip-with-kube-annotation.yaml
+
+2. create the lb service with static ip using metallb metallb.universe.tf/loadBalancerIPs annotations.
+
+kubectl create -f  https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/lb-with-static-ip-with-metallb-annotation.yaml
+
+
+
