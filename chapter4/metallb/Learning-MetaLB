@@ -73,8 +73,6 @@ kubectl get ipaddresspool
 
 kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/specific-pool-L2Advertisement.yaml
 
-
-
 3. Execute the below command to verify the pool advertisement. 
 
 kubectl get kubectl get l2advertisement
