@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp01-lb
+  name: myapp01-lb-with-metallb-annotation
   annotations:
     metallb.universe.tf/loadBalancerIPs: 172.18.10.85
 spec:
