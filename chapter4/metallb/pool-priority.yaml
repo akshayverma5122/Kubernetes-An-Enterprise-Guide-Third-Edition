@@ -7,9 +7,9 @@ metadata:
 spec:
   addresses:
     - 172.18.20.20-172.18.20.30
-   serviceAllocation:
+  serviceAllocation:
     priority: 50
-    
+
 ---
 
 apiVersion: metallb.io/v1beta1
@@ -20,5 +20,5 @@ metadata:
 spec:
   addresses:
     - 172.18.20.40-172.18.20.50
-   serviceAllocation:
+  serviceAllocation:
     priority: 70
