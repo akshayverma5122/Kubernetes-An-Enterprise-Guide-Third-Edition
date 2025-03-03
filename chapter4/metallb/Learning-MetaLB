@@ -77,7 +77,7 @@ kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-A
 
 kubectl get l2advertisement
 
-Assigning a static IP address to a service:-
+Assigning a static IP address to a LB service:-
 -------------------------------------------
 
 1. create the lb service with static ip using kubernetes loadBalancerIP spec. 
@@ -88,5 +88,20 @@ kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-A
 
 kubectl create -f  https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/lb-with-static-ip-with-metallb-annotation.yaml
 
+IpAddressPool Priority:-
+-----------------------
 
+1. Create the IPAddressPool with pool priority. lower number will be highest priority. 
+
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/pool-priority.yaml
+
+
+NOTE :- The current release of MetalLB will require a restart of the MetalLB controller for the new address pool to be available.
+
+Using multiple address pools:-
+----------------------------
+
+1. Create the load balancer service which will take the ip address from pool-02 only. 
+
+kubectl create -f https://raw.githubusercontent.com/akshayverma5122/Kubernetes-An-Enterprise-Guide-Third-Edition/refs/heads/main/chapter4/metallb/use-specific-pool-in-svc-lb.yaml
 
